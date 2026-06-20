@@ -1,40 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:padding="20dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <!-- Título -->
+    <!-- Imagen de fondo: amplificador -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_amp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Fondo amplificador"/>
+
+    <!-- Capa oscura encima para legibilidad -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_overlay_scrim"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        tools:context=".MainActivity">
+
+    <!-- Título tipo emblema -->
+    <View
+        android:id="@+id/titleLineTop"
+        android:layout_width="40dp"
+        android:layout_height="2dp"
+        android:background="@color/steel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/title"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="10dp"/>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="AFINADOR"
-        android:textColor="@color/woodLight"
-        android:textSize="22sp"
-        android:letterSpacing="0.12"
-        android:fontFamily="serif"
+        android:textColor="@color/string"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.18"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"/>
 
+    <View
+        android:id="@+id/titleLineBottom"
+        android:layout_width="40dp"
+        android:layout_height="2dp"
+        android:background="@color/steel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="10dp"/>
+
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Afina tu guitarra con el micrófono"
+        android:text="AFINA TU GUITARRA CON EL MICRÓFONO"
         android:textColor="@color/muted"
-        android:textSize="11sp"
-        android:letterSpacing="0.05"
+        android:textSize="10sp"
+        android:letterSpacing="0.14"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="6dp"/>
 
     <!-- Toggle de modo -->
     <LinearLayout
@@ -54,9 +95,11 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estándar"
+            android:text="ESTÁNDAR"
             android:textAllCaps="false"
-            android:textSize="13sp"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:letterSpacing="0.06"
             android:paddingHorizontal="18dp"
             android:paddingVertical="8dp"
             android:background="@drawable/bg_toggle_active"
@@ -67,9 +110,11 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cromático"
+            android:text="CROMÁTICO"
             android:textAllCaps="false"
-            android:textSize="13sp"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:letterSpacing="0.06"
             android:paddingHorizontal="18dp"
             android:paddingVertical="8dp"
             android:background="@android:color/transparent"
@@ -83,8 +128,8 @@
         android:layout_height="wrap_content"
         android:text="—"
         android:textColor="@color/string"
-        android:textSize="80sp"
-        android:fontFamily="serif"
+        android:textSize="84sp"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintTop_toBottomOf="@id/modeToggle"
         app:layout_constraintBottom_toTopOf="@id/freqReadout"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,9 +141,11 @@
         android:id="@+id/freqReadout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Esperando señal…"
+        android:text="ESPERANDO SEÑAL…"
         android:textColor="@color/muted"
-        android:textSize="13sp"
+        android:textSize="11sp"
+        android:letterSpacing="0.1"
+        android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintTop_toBottomOf="@id/noteLetter"
         app:layout_constraintBottom_toTopOf="@id/needleView"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +170,9 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:textColor="@color/muted"
-        android:textSize="12sp"
+        android:textSize="11sp"
+        android:letterSpacing="0.06"
+        android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintTop_toBottomOf="@id/needleView"
         app:layout_constraintBottom_toTopOf="@id/stringsRow"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,8 +196,8 @@
     <!-- Botón de micrófono -->
     <ImageButton
         android:id="@+id/micBtn"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:background="@drawable/bg_mic_circle"
         android:src="@android:drawable/ic_btn_speak_now"
         android:scaleType="centerInside"
@@ -162,12 +211,15 @@
         android:id="@+id/micStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toca para empezar a escuchar"
+        android:text="TOCA PARA EMPEZAR A ESCUCHAR"
         android:textColor="@color/muted"
-        android:textSize="12sp"
+        android:textSize="10sp"
+        android:letterSpacing="0.08"
+        android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

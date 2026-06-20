@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#15110D</color>
+    <color name="bg2">#1D1712</color>
+    <color name="wood">#8A5A36</color>
+    <color name="woodLight">#C98C52</color>
+    <color name="copper">#D98A4F</color>
+    <color name="string">#E9DDC8</color>
+    <color name="green">#6FB583</color>
+    <color name="red">#C75C4A</color>
+    <color name="muted">#6B6258</color>
+    <color name="tickColor">#46392A</color>
+</resources>

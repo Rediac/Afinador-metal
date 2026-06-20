@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AFINADOR"
+        android:textColor="@color/woodLight"
+        android:textSize="22sp"
+        android:letterSpacing="0.12"
+        android:fontFamily="serif"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Afina tu guitarra con el micrófono"
+        android:textColor="@color/muted"
+        android:textSize="11sp"
+        android:letterSpacing="0.05"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Toggle de modo -->
+    <LinearLayout
+        android:id="@+id/modeToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_toggle_track"
+        android:padding="4dp"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="18dp">
+
+        <Button
+            android:id="@+id/btnStandard"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estándar"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/bg_toggle_active"
+            android:textColor="@color/bg"/>
+
+        <Button
+            android:id="@+id/btnChromatic"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cromático"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/muted"/>
+    </LinearLayout>
+
+    <!-- Nota grande -->
+    <TextView
+        android:id="@+id/noteLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="—"
+        android:textColor="@color/string"
+        android:textSize="80sp"
+        android:fontFamily="serif"
+        app:layout_constraintTop_toBottomOf="@id/modeToggle"
+        app:layout_constraintBottom_toTopOf="@id/freqReadout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/freqReadout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Esperando señal…"
+        android:textColor="@color/muted"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/noteLetter"
+        app:layout_constraintBottom_toTopOf="@id/needleView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Aguja del afinador (vista personalizada) -->
+    <com.tuapp.afinador.TunerNeedleView
+        android:id="@+id/needleView"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        app:layout_constraintTop_toBottomOf="@id/freqReadout"
+        app:layout_constraintBottom_toTopOf="@id/centsLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginHorizontal="20dp"/>
+
+    <TextView
+        android:id="@+id/centsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textColor="@color/muted"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/needleView"
+        app:layout_constraintBottom_toTopOf="@id/stringsRow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Fila de cuerdas (modo estándar) -->
+    <LinearLayout
+        android:id="@+id/stringsRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        app:layout_constraintTop_toBottomOf="@id/centsLabel"
+        app:layout_constraintBottom_toTopOf="@id/micBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="4dp"/>
+
+    <!-- Botón de micrófono -->
+    <ImageButton
+        android:id="@+id/micBtn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_mic_circle"
+        android:src="@android:drawable/ic_btn_speak_now"
+        android:scaleType="centerInside"
+        android:contentDescription="Activar micrófono"
+        app:layout_constraintBottom_toTopOf="@id/micStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/micStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toca para empezar a escuchar"
+        android:textColor="@color/muted"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
